@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  tasks:
+    - name: cvs user creation
+      include_role:
+        name: jtb_cvs_user_create 
+        tasks_from: main.yml
+        apply:
+          become: true
+          become_user: '{{ cvs_user }}'
+      when: ansible_facts['os_family']
+        in ['RedHat', 'Suse', 'AIX', 'Debian']
+
+  
+
