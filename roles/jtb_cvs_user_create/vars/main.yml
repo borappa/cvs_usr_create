@@ -1,0 +1,5 @@
+---
+# vars file for jtb_cvs_user_create
+#file_path: /home1/cvs/AP/CVSROOT
+file_path: /home/cvs
+

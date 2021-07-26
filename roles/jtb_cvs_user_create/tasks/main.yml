@@ -1,0 +1,20 @@
+---
+# tasks file for jtb_cvs_user_create
+- name: Ansible date fact example
+  debug:
+    msg: "{{ lookup('pipe','date +%Y%m%d%H%M%S') }}"
+- name: print current date
+  shell: 'date +%Y%m%d%H%M%S'
+  register: current_date
+
+- name: Backup password file on target machine
+  ansible.builtin.copy:
+    src: '{{ file_path }}/passwd'
+    dest: '{{ file_path }}/passwd1.{{ current_date.stdout }}'
+    remote_src: true 
+
+- name: Insert a line at the end of a file.
+  lineinfile:
+    path: '{{ file_path }}/passwd'
+    line: '{{ target_user }}::{{ cvs_user }}'
+ 
